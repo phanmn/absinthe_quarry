@@ -65,7 +65,7 @@ defmodule AbsintheQuarry.Extract do
   defp normalize_filter(args) do
     args
     |> Enum.map(fn
-      {field, child} when is_map(child) ->
+      {field, child} when is_map(child) and !is_struct(child) ->
         {field, normalize_filter(child)}
 
       {field, value} ->
